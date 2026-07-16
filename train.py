@@ -71,7 +71,7 @@ test_logit = accuracy_score(y_test,logit_predictions)
 
 # Start an MLflow run
 
-mlflow.set_tracking_uri(uri="http://127.0.0.1:8070")
+mlflow.set_tracking_uri(uri="http://host.docker.internal:8070")
 
 # Create a new MLflow Experiment
 mlflow.set_experiment("MLflow Quickstart")
