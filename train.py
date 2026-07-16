@@ -15,7 +15,9 @@ mlflow.enable_system_metrics_logging()
 
 
 # Set our tracking server uri for logging
-
+# Prefer environment variable `MLFLOW_TRACKING_URI`, fallback to host.docker.internal for Docker on Windows
+tracking_uri = os.environ.get("MLFLOW_TRACKING_URI", "http://host.docker.internal:8070")
+mlflow.set_tracking_uri(uri=tracking_uri)
 
 # Set path to inputs
 PROCESSED_DATA_DIR = os.environ["PROCESSED_DATA_DIR"]
@@ -70,8 +72,6 @@ test_logit = accuracy_score(y_test,logit_predictions)
 
 
 # Start an MLflow run
-
-mlflow.set_tracking_uri(uri="http://host.docker.internal:8070")
 
 # Create a new MLflow Experiment
 mlflow.set_experiment("MLflow Quickstart")
